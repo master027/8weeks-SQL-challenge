@@ -104,11 +104,11 @@ they earn 2x points on all items, not just sushi
 */
 
 SELECT s.customer_id,
-					SUM(
-						CASE 
-							WHEN s.order_date < DATE_ADD(mb.join_date, INTERVAL 7 DAY) THEN m.price * 10 * 2
-							ELSE m.price * 10
-						END) AS total_points
+		SUM(
+			CASE 
+				WHEN s.order_date < DATE_ADD(mb.join_date, INTERVAL 7 DAY) THEN m.price * 10 * 2
+				ELSE m.price * 10
+			END) AS total_points
 FROM sales s
 	JOIN 
   members mb ON s.customer_id = mb.customer_id
@@ -128,12 +128,12 @@ his team can use to quickly derive insights without needing to join the underlyi
 */
 
 CREATE TABLE table_for_danny(
-							customer_id VARCHAR(1),
-							order_date DATE,
-							product_name VARCHAR(10),
-							price INTEGER,
-							member ENUM('Y','N')
-							);
+			customer_id VARCHAR(1),
+			order_date DATE,
+			product_name VARCHAR(10),
+			price INTEGER,
+			member ENUM('Y','N')
+			);
 
 -- INSERT INTO table_for_danny
 SELECT s.customer_id, s.order_date, m.product_name, m.price,
